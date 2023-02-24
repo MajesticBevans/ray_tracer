@@ -14,7 +14,10 @@ namespace rt{
  *
  * @param scenespecs the json scene specificatioon
  */
-void Scene::createScene(Value& scenespecs){
+void Scene::createScene(Value& scenespecs)
+{
+	Value& lightsources = scenespecs["lightsources"];
+	Value& shapes = scenespecs["shapes"];
 
 	//----------parse json object to populate scene-----------
 

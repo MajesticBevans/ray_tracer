@@ -13,6 +13,23 @@
 namespace rt{
 
 class PointLight: public LightSource{
+    public:
+
+    //
+	// Constructors
+	//
+	PointLight();
+	PointLight(Vec3f* is, Vec3f* id);
+
+	//
+	// Destructor
+	//
+	~PointLight(){};
+
+	//
+	// print function (implementing abstract function of base class)
+	//
+	void printLightSource();
 
 
 };

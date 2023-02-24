@@ -42,12 +42,8 @@ Vec3f* RayTracer::render(Camera* camera, Scene* scene, int nbounces){
  */
 Vec3f* RayTracer::tonemap(Vec3f* pixelbuffer){
 
-	//---------tonemapping function to be filled--------
-
-
-
-
-
+	Vec3f vector255(255,255,255);
+	*pixelbuffer = *pixelbuffer * vector255;
 	return pixelbuffer;
 
 }

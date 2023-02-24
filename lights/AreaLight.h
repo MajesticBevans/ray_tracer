@@ -12,6 +12,23 @@
 namespace rt{
 
 class AreaLight:public LightSource{
+    public:
+
+    //
+	// Constructors
+	//
+	AreaLight();
+	AreaLight(Vec3f* is, Vec3f* id);
+
+	//
+	// Destructor
+	//
+	~AreaLight(){};
+
+	//
+	// print function (implementing abstract function of base class)
+	//
+	void printLightSource();
 
 
 };

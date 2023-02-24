@@ -13,7 +13,7 @@ using namespace rapidjson;
 
 namespace rt{
 
-class Camera{
+class Camera{ 
 public:
 
 	//
@@ -44,9 +44,6 @@ public:
 	//
 	// other camera functions (to complete)
 	//
-
-
-
 
 
 
