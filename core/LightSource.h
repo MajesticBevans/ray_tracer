@@ -21,8 +21,8 @@ public:
 	// Constructors
 	//
     LightSource() {};
-    LightSource(Vec3f* is, Vec3f* id):
-    is(is), id(id){};
+    LightSource(Vec3f is, Vec3f id, Vec3f pos):
+    is(is), id(id), pos(pos) {};
 
 
     //
@@ -38,18 +38,19 @@ public:
     //
 	// print function (to be implemented by the subclasses )
 	//
-	virtual void printLightSource()=0;
+	virtual void printLightSource();
 
     //
     // Getters and Setters
     //
-    Vec3f* getIs() const { return is; }
-    Vec3f* getId() const { return id; }
+    Vec3f getIs() const { return is; }
+    Vec3f getId() const { return id; }
+    Vec3f getPos() const { return pos; }
     
 protected:
-    Vec3f* is;
-    Vec3f* id;
-
+    Vec3f is;
+    Vec3f id;
+    Vec3f pos;
 };
 
 } //namespace rt

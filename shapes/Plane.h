@@ -1,11 +1,11 @@
 /*
- * TriMesh.h
+ * Plane.h
  *
  *
  */
 
-#ifndef TRIMESH_H_
-#define TRIMESH_H_
+#ifndef PLANE_H_
+#define PLANE_H_
 
 #include "math/geometry.h"
 #include "core/RayHitStructs.h"
@@ -13,7 +13,7 @@
 
 namespace rt{
 
-class TriMesh: public Shape
+class Plane: public Shape
 {
 
 public:
@@ -21,11 +21,11 @@ public:
 	//
 	// Constructors
 	//
-	TriMesh();
-	TriMesh(Vec3f v0, Vec3f v1, Vec3f v2, Material* material);
-    TriMesh(std::string id, Vec3f v0, Vec3f v1, Vec3f v2, Material* material);
+	Plane();
+	Plane(Vec3f v0, Vec3f v1, Vec3f v2, Vec3f v3, Material* material);
+    Plane(std::string id, Vec3f v0, Vec3f v1, Vec3f v2, Vec3f v3, Material* material);
 
-	~TriMesh();
+	~Plane();
 
 
 	//
@@ -45,7 +45,7 @@ public:
 
 private:
     std::string id;
-	Vec3f vertices[3];
+	Vec3f vertices[4];
 };
 
 
@@ -55,4 +55,4 @@ private:
 
 
 
-#endif /* TRIMESH_H_ */
+#endif /* PLANE_H_ */

@@ -18,7 +18,7 @@ public:
 	// Constructors
 	//
 	Pinhole();
-	Pinhole(int width, int height, int fov);
+	Pinhole(int width, int height, int fov, Vec3f pos);
 
 	//
 	//Destructor

@@ -25,12 +25,13 @@ public:
 
 	void createScene(Value& scenespecs);
 
+	void printScene();
+
 
 private:
 
 	std::vector<LightSource*> lightSources;
 	std::vector<Shape*> shapes;
-
 };
 
 } //namespace rt

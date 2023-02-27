@@ -1,14 +1,14 @@
 /*
- * Triangle.cpp
+ * Plane.cpp
  *
  *
  */
 
-#include "Triangle.h"
+#include "Plane.h"
 
 namespace rt{
 
-class Triangle: public Shape
+class Plane: public Shape
 {
 
 public:
@@ -16,24 +16,25 @@ public:
 	//
 	// Constructors
 	//
-	Triangle();
-	Triangle(){};
-	Triangle(Vec3f v0, Vec3f v1, Vec3f v2, Material* material)
+	Plane(){};
+	Plane(Vec3f v0, Vec3f v1, Vec3f v2, Vec3f v3, Material* material)
     {
         this->id = "";
         this->vertices[0] = v0;
         this->vertices[1] = v1;
         this->vertices[2] = v2;
+        this->vertices[3] = v3;
     }
-    Triangle(std::string id, Vec3f v0, Vec3f v1, Vec3f v2, Material* material)
+    Plane(std::string id, Vec3f v0, Vec3f v1, Vec3f v2, Vec3f v3, Material* material)
     {
         this->id = id;
         this->vertices[0] = v0;
         this->vertices[1] = v1;
         this->vertices[2] = v2;
+        this->vertices[3] = v3;
     }
 
-	~Triangle();
+	~Plane();
 
 
 	//
@@ -43,7 +44,7 @@ public:
 
 	void printShape()
 	{
-		printf("I am a Triangle ");
+		printf("I am a Plane ");
 		if (this->id.size() > 0) { printf("called %d \n", this->id); }
 		printf("with vertices: %d", this->vertices);
 	}
@@ -52,13 +53,19 @@ public:
 	// Getters and Setters
 	//
 
-	Vec3f* getVertices();
+	Vec3f* getVertices()
+    {
+        return this->vertices;
+    }
 
-    std::string getID();
+    std::string getID()
+    {
+        return this->id;
+    }
 
 private:
     std::string id;
-	Vec3f vertices[3];
+	Vec3f vertices[4];
 };
 
 

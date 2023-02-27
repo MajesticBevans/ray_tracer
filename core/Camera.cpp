@@ -38,14 +38,16 @@ Camera* Camera::createCamera(Value& cameraSpecs){
 	{
 		return new Pinhole(cameraSpecs["width"].GetInt(),
 				cameraSpecs["height"].GetInt(),
-				cameraSpecs["fov"].GetInt());
+				cameraSpecs["fov"].GetInt(),
+				Vec3f(cameraSpecs["position"]));
 
 	}
 	else if (cameraType.compare("thinlens")==0)
 	{
 		return new ThinLens(cameraSpecs["width"].GetInt(),
 				cameraSpecs["height"].GetInt(),
-				cameraSpecs["fov"].GetInt());
+				cameraSpecs["fov"].GetInt(),
+				Vec3f(cameraSpecs["position"]));
 	}
 
 	return 0;

@@ -7,6 +7,8 @@
 
 namespace rt{
 
+class RayTracer
+{
 
 /**
  * Performs ray tracing to render a photorealistic scene
@@ -17,17 +19,12 @@ namespace rt{
  *
  * @return a pixel buffer containing pixel values in linear RGB format
  */
-Vec3f* RayTracer::render(Camera* camera, Scene* scene, int nbounces){
+Vec3f* RayTracer::render(Camera* camera, Scene* scene, int nbounces)
+{
 
 	Vec3f* pixelbuffer=new Vec3f[camera->getWidth()*camera->getHeight()];
 
-	//----------main rendering function to be filled------
-
-
-
-
-
-
+	scene->printScene();
 
 	return pixelbuffer;
 
@@ -42,13 +39,16 @@ Vec3f* RayTracer::render(Camera* camera, Scene* scene, int nbounces){
  */
 Vec3f* RayTracer::tonemap(Vec3f* pixelbuffer){
 
-	Vec3f vector255(255,255,255);
-	*pixelbuffer = *pixelbuffer * vector255;
-	return pixelbuffer;
+	pixelbuffer->x = fmodf((pixelbuffer->x * 255.0F),threshold);
+	pixelbuffer->y = fmodf((pixelbuffer->y * 255.0F),threshold);
+	pixelbuffer->z = fmodf((pixelbuffer->z * 255.0F),threshold);
 
+	return pixelbuffer;
 }
 
-
+private:
+	const float threshold = (float)200;
+};
 
 
 

@@ -38,6 +38,10 @@
 #include <iomanip>
 #include <cmath>
 
+#include "rapidjson/document.h"
+
+using namespace rapidjson;
+
 
 template<typename T>
 class Vec2
@@ -84,6 +88,21 @@ public:
     Vec3() : x(T(0)), y(T(0)), z(T(0)) {}
     Vec3(T xx) : x(xx), y(xx), z(xx) {}
     Vec3(T xx, T yy, T zz) : x(xx), y(yy), z(zz) {}
+    Vec3(Value& jsonVector)
+    {
+        if (!jsonVector.IsArray() || !jsonVector.IsArray() ||
+            jsonVector.Size() != 3 || jsonVector.Size() != 3) 
+        {
+            std::cerr<<"Vector formatted incorrectly"<<std::endl;
+            exit(-1);
+        }
+
+        if (typeid(T) == typeid(float))
+        {
+            return new Vec3<T>(jsonVector[0].GetFloat(), jsonVector[1].GetFloat(), jsonVector[2].GetFloat());
+        } 
+        else {return NULL}
+    }
     Vec3 operator + (const Vec3 &v) const
     { return Vec3(x + v.x, y + v.y, z + v.z); }
     Vec3 operator - (const Vec3 &v) const
@@ -124,6 +143,22 @@ public:
         }
 
         return *this;
+    }
+
+    static Vec3* fromJson(Value& jsonVector)
+    {
+        if (!jsonVector.IsArray() || !jsonVector.IsArray() ||
+            jsonVector.Size() != 3 || jsonVector.Size() != 3) 
+        {
+            std::cerr<<"Vector formatted incorrectly"<<std::endl;
+            exit(-1);
+        }
+
+        if (typeid(T) == typeid(float))
+        {
+            return new Vec3<T>(jsonVector[0].GetFloat(), jsonVector[1].GetFloat(), jsonVector[2].GetFloat());
+        } 
+        else {return NULL}
     }
 
     friend Vec3 operator * (const T &r, const Vec3 &v)

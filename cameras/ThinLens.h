@@ -18,7 +18,7 @@ public:
 	// Constructors
 	//
 	ThinLens():Camera(){};
-	ThinLens(int width, int height, int fov);
+	ThinLens(int width, int height, int fov, Vec3f pos);
 
 	//
 	//Destructor

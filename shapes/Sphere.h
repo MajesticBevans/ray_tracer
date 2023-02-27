@@ -13,7 +13,8 @@
 
 namespace rt{
 
-class Sphere:public Shape{
+class Sphere: public Shape
+{
 
 public:
 
@@ -21,7 +22,8 @@ public:
 	// Constructors
 	//
 	Sphere();
-	Sphere(Vec3f center, float radius):center(center), radius(radius){};
+	Sphere(Vec3f center, float radius, Material* material);
+	Sphere(std::string id, Vec3f center, float radius, Material* material);
 
 	virtual ~Sphere();
 
@@ -31,11 +33,26 @@ public:
 	//
 	Hit intersect(Ray ray);
 
+	void printShape();
+
+	//
+	// Getters and Setters
+	//
+
+	Vec3f getCenter()
+	{
+		return center;
+	}
+
+	float getRadius()
+	{
+		return radius;
+	}
+
 private:
 
 	Vec3f center;
 	float radius;
-
 };
 
 

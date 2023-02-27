@@ -18,7 +18,7 @@ class AreaLight:public LightSource{
 	// Constructors
 	//
 	AreaLight();
-	AreaLight(Vec3f* is, Vec3f* id);
+	AreaLight(Vec3f is, Vec3f id, Vec3f pos);
 
 	//
 	// Destructor
@@ -29,8 +29,6 @@ class AreaLight:public LightSource{
 	// print function (implementing abstract function of base class)
 	//
 	void printLightSource();
-
-
 };
 
 

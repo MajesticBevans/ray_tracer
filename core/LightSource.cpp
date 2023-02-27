@@ -7,7 +7,8 @@
 #include "lights/PointLight.h"
 #include "lights/AreaLight.h"
 
-namespace rt{
+namespace rt
+{
 
     LightSource::~LightSource(){};
 
@@ -30,37 +31,25 @@ namespace rt{
             exit(-1);
         }
 
-        std::string type=lightSourceSpecs["type"].GetString();
+        std::string type = lightSourceSpecs["type"].GetString();
         Value& isJson = lightSourceSpecs["is"];
         Value& idJson = lightSourceSpecs["id"];
+        Value& posJson = lightSourceSpecs["position"];
 
-        if (!lightSourceSpecs["is"].IsArray() || !lightSourceSpecs["id"].IsArray() ||
-            isJson.Size() != 3 || idJson.Size() != 3) 
-        {
-            std::cerr<<"Is/Id values not input correctly"<<std::endl;
-            exit(-1);
-        }
 
-        float isX, isY, isZ, idX, idY, idZ;
-        isX = isJson[0].GetFloat();
-        isY = isJson[1].GetFloat();
-        isZ = isJson[2].GetFloat();
-        idX = idJson[0].GetFloat();
-        idY = idJson[0].GetFloat();
-        idZ = idJson[0].GetFloat();
-
-        Vec3f* is = new Vec3f(isX, isY, isZ);
-        Vec3f* id = new Vec3f(idX, idY, idZ);
+        Vec3f is = Vec3f(isJson);
+        Vec3f id = Vec3f(idJson);
+        Vec3f pos = Vec3f(posJson);
         
 
         //return camera object based on camera specs
         if (type.compare("pointlight")==0)
         {
-            return new PointLight(is, id);
+            return new PointLight(is, id, pos);
         }
         else if (type.compare("arealight")==0)
         {
-            return new AreaLight(is, id);
+            return new AreaLight(is, id, pos);
         }
 
         return 0;

@@ -19,7 +19,7 @@ class PointLight: public LightSource{
 	// Constructors
 	//
 	PointLight();
-	PointLight(Vec3f* is, Vec3f* id);
+	PointLight(Vec3f is, Vec3f id, Vec3f pos);
 
 	//
 	// Destructor

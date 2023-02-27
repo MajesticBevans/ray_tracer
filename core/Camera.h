@@ -6,6 +6,7 @@
 #ifndef CAMERA_H_
 #define CAMERA_H_
 
+#include "math/geometry.h"
 #include "rapidjson/document.h"
 
 
@@ -20,7 +21,7 @@ public:
 	// Constructors
 	//
 	Camera(){};
-	Camera(int height, int width, int fov):height(height), width(width), fov(fov){};
+	Camera(int height, int width, int fov, Vec3f pos):height(height), width(width), fov(fov), pos(pos){};
 
 	//
 	// Destructor
@@ -46,34 +47,24 @@ public:
 	//
 
 
-
-
-
-
-
-
-
-
-
 	//
 	// Getters and Setters
 	//
-	int getHeight() const {
+
+	int getHeight() const 
+	{
 		return height;
 	}
 
-	void setHeight(int height) {
-		this->height = height;
-	}
-
-	int getWidth() const {
+	int getWidth() const 
+	{
 		return width;
 	}
 
-	void setWidth(int width) {
-		this->width = width;
+	Vec3f getPos() const
+	{
+		return this->pos;
 	}
-
 
 
 protected:
@@ -84,6 +75,8 @@ protected:
 	int height;
 	int width;
 	int fov; //field of view
+	Vec3f pos;
+
 
 };
 

@@ -26,7 +26,7 @@ public:
 
 
 private:
-
+	const float threshold = (float)200;
 
 };
 
