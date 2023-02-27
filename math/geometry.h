@@ -93,15 +93,32 @@ public:
         if (!jsonVector.IsArray() || !jsonVector.IsArray() ||
             jsonVector.Size() != 3 || jsonVector.Size() != 3) 
         {
-            std::cerr<<"Vector formatted incorrectly"<<std::endl;
+            std::cerr<<"Input vector formatted incorrectly"<<std::endl;
             exit(-1);
         }
 
         if (typeid(T) == typeid(float))
         {
-            return new Vec3<T>(jsonVector[0].GetFloat(), jsonVector[1].GetFloat(), jsonVector[2].GetFloat());
-        } 
-        else {return NULL}
+            this->x = jsonVector[0].GetFloat();
+            this->y = jsonVector[1].GetFloat();
+            this->z = jsonVector[2].GetFloat();
+        }
+    }
+    Vec3(const Value& jsonVector)
+    {
+        if (!jsonVector.IsArray() || !jsonVector.IsArray() ||
+            jsonVector.Size() != 3 || jsonVector.Size() != 3) 
+        {
+            std::cerr<<"Input vector formatted incorrectly"<<std::endl;
+            exit(-1);
+        }
+
+        if (typeid(T) == typeid(float))
+        {
+            this->x = jsonVector[0].GetFloat();
+            this->y = jsonVector[1].GetFloat();
+            this->z = jsonVector[2].GetFloat();
+        }
     }
     Vec3 operator + (const Vec3 &v) const
     { return Vec3(x + v.x, y + v.y, z + v.z); }
@@ -143,22 +160,6 @@ public:
         }
 
         return *this;
-    }
-
-    static Vec3* fromJson(Value& jsonVector)
-    {
-        if (!jsonVector.IsArray() || !jsonVector.IsArray() ||
-            jsonVector.Size() != 3 || jsonVector.Size() != 3) 
-        {
-            std::cerr<<"Vector formatted incorrectly"<<std::endl;
-            exit(-1);
-        }
-
-        if (typeid(T) == typeid(float))
-        {
-            return new Vec3<T>(jsonVector[0].GetFloat(), jsonVector[1].GetFloat(), jsonVector[2].GetFloat());
-        } 
-        else {return NULL}
     }
 
     friend Vec3 operator * (const T &r, const Vec3 &v)

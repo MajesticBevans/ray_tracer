@@ -9,29 +9,20 @@
 #include "core/Camera.h"
 #include "core/Scene.h"
 
-namespace rt{
-
-
-
+namespace rt
+{
 /*
  * Raytracer class declaration
  */
-class RayTracer {
+class RayTracer 
+{
 public:
 
 	RayTracer();
 
 	static Vec3f* render(Camera* camera, Scene* scene, int nbounces);
 	static Vec3f* tonemap(Vec3f* pixelbuffer);
-
-
-private:
-	const float threshold = (float)200;
-
 };
-
-
-
 
 } //namespace rt
 

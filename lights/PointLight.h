@@ -24,7 +24,7 @@ class PointLight: public LightSource{
 	//
 	// Destructor
 	//
-	~PointLight(){};
+	~PointLight();
 
 	//
 	// print function (implementing abstract function of base class)

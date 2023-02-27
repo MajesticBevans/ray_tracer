@@ -33,12 +33,12 @@ public:
     //
 	// factory function : returns lightsource instance dynamically based on lightsource specifications
 	//
-    static LightSource* createLightSource(Value& lightSourceSpecs);
+    static LightSource* createLightSource(Value& lightSouceSpecs);
 
     //
 	// print function (to be implemented by the subclasses )
 	//
-	virtual void printLightSource();
+	virtual void printLightSource()=0;
 
     //
     // Getters and Setters

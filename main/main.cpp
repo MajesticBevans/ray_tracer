@@ -51,12 +51,6 @@ int main(int argc, char* argv[]){
 
 
 
-	//free resources when rendering is finished
-	delete camera;
-	delete scene;
-
-
-
 	//convert linear RGB pixel values [0-1] to range 0-255
 	RayTracer::tonemap(pixelbuffer);
 
@@ -67,6 +61,9 @@ int main(int argc, char* argv[]){
 	//write rendered scene to file (pixels RGB values must be in range 0255)
 	PPMWriter::PPMWriter(camera->getWidth(), camera->getHeight(), pixelbuffer, outputFile);
 
+	//free resources when rendering is finished
+	delete camera;
+	delete scene;
 	delete pixelbuffer;
 }
 

@@ -6,9 +6,6 @@
 #include "LightSource.h"
 #include "Shape.h"
 
-
-
-
 namespace rt
 {
 
@@ -21,7 +18,6 @@ void Scene::createScene(Value& scenespecs)
 {
 	Value& lightSources = scenespecs["lightsources"];
 	Value& shapes = scenespecs["shapes"];
-
 
 	if (lightSources.Size() < 1)
 	{

@@ -46,6 +46,7 @@ public:
 private:
     std::string id;
 	Vec3f vertices[3];
+	Material* material;
 };
 
 

@@ -29,16 +29,8 @@ namespace rt
 	 */
 	void Pinhole::printCamera()
 	{
-		printf("I am a pinhole camera at position %d \n", pos);
+		printf("I am a pinhole camera at position (%f, %f, %f)\n", pos.x, pos.y, pos.z);
 		printf("width: %dpx, height: %dpx, fov:%d \n", width, height, fov);
-	}
-
-	//
-	// Pinhold destructor
-	//
-	Pinhole::~Pinhole()
-	{
-		// REMEMBER TO DELETE DYNAMICALLY ALLOCATED MEMORY!!!!
 	}
 } //namespace rt
 

@@ -26,13 +26,8 @@ namespace rt
 	 */
 	void ThinLens::printCamera()
 	{
-		printf("I am a thin lens camera at position %d\n", pos);
+		printf("I am a thin lens camera at position (%f, %f, %f)\n", pos.x, pos.y, pos.z);
 		printf("width: %dpx, height: %dpx, fov:%d \n", width, height, fov);
-	}
-
-	ThinLens::~ThinLens()
-	{
-		// REMEMBER TO DELETE DYNAMICALLY ALLOCATED MEMORY!!
 	}
 
 } //namespace rt

@@ -12,8 +12,6 @@ namespace rt{
 
 	Camera::~Camera(){};
 
-
-
 /**
  * Factory function that returns camera subclass based on camera specifications
  *
@@ -26,7 +24,8 @@ Camera* Camera::createCamera(Value& cameraSpecs){
 
 	//check if cameratype is defined
 
-	if (!cameraSpecs.HasMember("type")){
+	if (!cameraSpecs.HasMember("type"))
+	{
 		std::cerr<<"Camera type not specified"<<std::endl;
 		exit(-1);
 	}

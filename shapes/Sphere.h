@@ -21,11 +21,10 @@ public:
 	//
 	// Constructors
 	//
-	Sphere();
 	Sphere(Vec3f center, float radius, Material* material);
 	Sphere(std::string id, Vec3f center, float radius, Material* material);
 
-	virtual ~Sphere();
+	~Sphere();
 
 
 	//
@@ -50,7 +49,7 @@ public:
 	}
 
 private:
-
+	std::string id;
 	Vec3f center;
 	float radius;
 };

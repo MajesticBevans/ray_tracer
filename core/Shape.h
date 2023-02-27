@@ -35,7 +35,7 @@ public:
 
 	static Shape* createShape(Value& shapeSpecs);
 
-	virtual void printShape();
+	virtual void printShape()=0;
 
 
 protected:

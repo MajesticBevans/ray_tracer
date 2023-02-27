@@ -9,10 +9,8 @@
 
 namespace rt
 {
-
     LightSource::~LightSource(){};
-
-
+    
     /**
      * Factory function that returns lightsource subclass based on lightsource specifications
      *
@@ -21,38 +19,29 @@ namespace rt
      * @return lightsource subclass instance
      *
      */
-    LightSource* createLightSource(Value& lightSourceSpecs)
+    LightSource* LightSource::createLightSource(Value& lightSourceSpecs)
     {
-        //check if lightsource is defined
 
         if (!lightSourceSpecs.HasMember("type"))
         {
             std::cerr<<"Light source type not specified"<<std::endl;
-            exit(-1);
+		    exit(-1);
         }
 
         std::string type = lightSourceSpecs["type"].GetString();
-        Value& isJson = lightSourceSpecs["is"];
-        Value& idJson = lightSourceSpecs["id"];
-        Value& posJson = lightSourceSpecs["position"];
+        Vec3f is = Vec3f(lightSourceSpecs["is"]);
+        Vec3f id = Vec3f(lightSourceSpecs["id"]);
+        Vec3f pos = Vec3f(lightSourceSpecs["position"]);
 
-
-        Vec3f is = Vec3f(isJson);
-        Vec3f id = Vec3f(idJson);
-        Vec3f pos = Vec3f(posJson);
-        
-
-        //return camera object based on camera specs
+        //return light source object based on specs
         if (type.compare("pointlight")==0)
         {
             return new PointLight(is, id, pos);
         }
-        else if (type.compare("arealight")==0)
+        else
         {
             return new AreaLight(is, id, pos);
         }
-
-        return 0;
     }
 
 } //namespace rt

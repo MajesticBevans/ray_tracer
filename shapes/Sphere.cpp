@@ -9,8 +9,6 @@
 namespace rt
 {
 
-class Sphere: public Shape
-{
 	Sphere::Sphere(Vec3f center, float radius, Material* material)
 	{
 		this->id = "";
@@ -27,7 +25,12 @@ class Sphere: public Shape
 		this->material = material;
 	}
 
-	
+	Sphere::~Sphere()
+	{
+		// REMEMBER TO DELETE DYNAMICALLY ALLOCATED MEMORY
+	}
+
+
 
 	/**
 	 * Computes whether a ray hit the specific instance of a sphere shape and returns the hit data
@@ -48,19 +51,14 @@ class Sphere: public Shape
 
 	}
 
-	void printShape()
+	void Sphere::printShape()
 	{
 		printf("I am a Sphere ");
-		if (this->id.size() > 0) { printf("called %d ", this->id); }
-		printf("at position %d!\n", this->center);
-      	printf("radius: %d\n", this->radius);
+		if (this->id.size() > 0) { printf("called %s ", this->id.c_str()); }
+		printf("at position (%f, %f, %f)!\n", this->center.x, this->center.y, this->center.z);
+		printf("radius: %f\n", this->radius);
 	}
 
-	private:
-	std::string id;
-	Vec3f center;
-	float radius;
-};
 } //namespace rt
 
 

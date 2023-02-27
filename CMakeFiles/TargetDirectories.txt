@@ -1,0 +1,5 @@
+/mnt/c/Users/barev/Desktop/RayTracer/CMakeFiles/rebuild_cache.dir
+/mnt/c/Users/barev/Desktop/RayTracer/CMakeFiles/jsonexample.dir
+/mnt/c/Users/barev/Desktop/RayTracer/CMakeFiles/edit_cache.dir
+/mnt/c/Users/barev/Desktop/RayTracer/CMakeFiles/vectorexample.dir
+/mnt/c/Users/barev/Desktop/RayTracer/CMakeFiles/raytracer.dir

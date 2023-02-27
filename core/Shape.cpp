@@ -15,6 +15,7 @@
 namespace rt
 {
 
+    Shape::Shape(){};
     Shape::~Shape(){};
     /**
      * Factory function that returns shape subclass based on shape specifications
@@ -24,7 +25,7 @@ namespace rt
      * @return shape subclass instance
      *
      */
-    Shape* createShape(Value& shapeSpecs)
+    Shape* Shape::createShape(Value& shapeSpecs)
     {
         //check if lightsource is defined
 

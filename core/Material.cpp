@@ -7,9 +7,6 @@
 
 namespace rt
 {
-class Material
-{
-public:
     Material::Material(){};
 
     Material::Material(Value& specs)
@@ -75,7 +72,6 @@ public:
         this->usingKr = true;
     }
 
-private:
     float ks, kd, kr;
     float specular;
     Vec3f diffuse;
@@ -84,11 +80,6 @@ private:
     int tHeight;
     bool usingPath;
     bool usingKr;
-};
-
-
-
-
 
 } //namespace rt
 
