@@ -30,3 +30,11 @@
 *.exe
 *.out
 *.app
+
+# Cmake
+.cmake
+CMakeCache.txt
+Makefile
+raytracer
+jsonexample
+vectorexample
