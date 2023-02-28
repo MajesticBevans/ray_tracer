@@ -39,6 +39,8 @@ void Scene::createScene(Value& scenespecs)
 	{
 		this->shapes.push_back(Shape::createShape(shapes[i]));
 	}
+
+	this->background_colour = Vec3f(scenespecs["backgroundcolor"]);
 }
 
 void Scene::printScene()

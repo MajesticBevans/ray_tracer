@@ -42,13 +42,8 @@ namespace rt
 	 */
 	Hit Sphere::intersect(Ray ray)
 	{
-
 		Hit h;
-		//-----------to be implemented -------------
-
-
 		return h;
-
 	}
 
 	void Sphere::printShape()

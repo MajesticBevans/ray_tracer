@@ -21,7 +21,8 @@ public:
 	// Constructors
 	//
 	Camera(){};
-	Camera(int height, int width, int fov, Vec3f pos):height(height), width(width), fov(fov), pos(pos){};
+	Camera(int height, int width, int fov, Vec3f pos, Vec3f lookat, Vec3f up) : 
+	height(height), width(width), fov(fov), pos(pos), lookat(lookat), up(up) {};
 
 	//
 	// Destructor
@@ -39,6 +40,8 @@ public:
 	// print function (to be implemented by the subclasses )
 	//
 	virtual void printCamera()=0;
+
+	virtual Vec3f getPixelPos(float u, float v);
 
 
 
@@ -76,6 +79,8 @@ protected:
 	int width;
 	int fov; //field of view
 	Vec3f pos;
+	Vec3f lookat;
+	Vec3f up;
 
 
 };

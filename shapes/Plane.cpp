@@ -52,7 +52,7 @@ namespace rt
 	{
 		printf("I am a Plane ");
 		if (this->id.size() > 0) { printf("called %s \n", this->id.c_str()); }
-		printf("with vertices: (%f, %f, %f), (%f, %f, %f), (%f, %f, %f), (%f, %f, %f)",
+		printf("with vertices: (%f, %f, %f), (%f, %f, %f), (%f, %f, %f), (%f, %f, %f)\n",
         this->vertices[0].x, this->vertices[0].y, this->vertices[0].z,
         this->vertices[1].x, this->vertices[1].y, this->vertices[1].z,
         this->vertices[2].x, this->vertices[2].y, this->vertices[2].z,
@@ -62,7 +62,7 @@ namespace rt
 	//
 	// Getters and Setters
 	//
-
+    
 	Vec3f* Plane::getVertices()
     {
         return this->vertices;
@@ -72,5 +72,4 @@ namespace rt
     {
         return this->id;
     }
-
 } //namespace rt

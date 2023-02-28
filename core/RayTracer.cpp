@@ -20,10 +20,22 @@ namespace rt
 	Vec3f* RayTracer::render(Camera* camera, Scene* scene, int nbounces)
 	{
 
-		Vec3f* pixelbuffer=new Vec3f[camera->getWidth()*camera->getHeight()];
+		Vec3f* pixelbuffer = new Vec3f[camera->getWidth()*camera->getHeight()];
+		Ray* primaries = new Ray[camera->getWidth()*camera->getHeight()];
 
-		scene->printScene();
+		for (int j = 0; j < camera->getHeight(); ++j)
+		{
+			for (int i = 0; i < camera->getWidth(); ++i)
+			{
+				float u = (float)i / (float)(camera->getWidth() - 1);
+				float v = (float)j / (float)(camera->getHeight() - 1);
+				Vec3f pixelPos = camera->getPixelPos(u, v);
+				Vec3f direction = (pixelPos - camera->getPos()).normalize();
+				primaries[j * camera->getWidth() + i] = Ray(camera->getPos(), direction, RayType::PRIMARY, 0);
+			}
+		}
 
+		delete primaries;
 		return pixelbuffer;
 
 	}

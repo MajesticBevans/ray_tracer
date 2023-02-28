@@ -33,7 +33,7 @@
 
 # Cmake
 .cmake
-CMakeFiles
+CMakeFiles/
 CMakeCache.txt
 Makefile
 raytracer

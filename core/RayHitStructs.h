@@ -14,22 +14,39 @@ namespace rt{
  */
 enum RayType {PRIMARY, SECONDARY, SHADOW};
 
-struct Ray{
+struct Ray
+{	
+	//
+	// Ray constructors
+	//
+	Ray() {}
 
-	RayType raytype;
+	Ray(Vec3f origin, Vec3f direction, RayType rayType, int bounce) : 
+	origin(origin), direction(direction.normalize()), rayType(rayType), bounce(bounce) {}
 
-	//----------Ray variables to be filled------
+	RayType rayType; //type of ray
+	Vec3f origin; //origin of ray
+	Vec3f direction; //direction of ray
+	int bounce; //number of bounces before this ray was created
 };
 
 
-struct Hit{
+struct Hit
+{
+	//
+	// Hit constructors
+	//
+	Hit() {}
+	
+	Hit(Vec3f point, float distance, Vec3f normal, Shape* shape) :
+	point(point), distance(distance), normal(normal), shape(shape) {}
 
 	Vec3f point; //point where ray hits a shape
-	//----------Hit variables to be filled------
-
+	float distance; //distance ray travelled before hit
+	Vec3f normal; //normal at hit point
+	Shape* shape; //shape that the ray hit
 };
 
 }
-
 
 #endif /* CORE_RAYHITSTRUCTS_H_ */

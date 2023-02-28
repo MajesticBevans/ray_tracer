@@ -90,8 +90,7 @@ public:
     Vec3(T xx, T yy, T zz) : x(xx), y(yy), z(zz) {}
     Vec3(Value& jsonVector)
     {
-        if (!jsonVector.IsArray() || !jsonVector.IsArray() ||
-            jsonVector.Size() != 3 || jsonVector.Size() != 3) 
+        if (!jsonVector.IsArray() || jsonVector.Size() != 3) 
         {
             std::cerr<<"Input vector formatted incorrectly"<<std::endl;
             exit(-1);
@@ -99,15 +98,14 @@ public:
 
         if (typeid(T) == typeid(float))
         {
-            this->x = jsonVector[0].GetFloat();
-            this->y = jsonVector[1].GetFloat();
-            this->z = jsonVector[2].GetFloat();
+            x = jsonVector[0].GetFloat();
+            y = jsonVector[1].GetFloat();
+            z = jsonVector[2].GetFloat();
         }
     }
     Vec3(const Value& jsonVector)
     {
-        if (!jsonVector.IsArray() || !jsonVector.IsArray() ||
-            jsonVector.Size() != 3 || jsonVector.Size() != 3) 
+        if (!jsonVector.IsArray() || jsonVector.Size() != 3) 
         {
             std::cerr<<"Input vector formatted incorrectly"<<std::endl;
             exit(-1);
@@ -115,9 +113,9 @@ public:
 
         if (typeid(T) == typeid(float))
         {
-            this->x = jsonVector[0].GetFloat();
-            this->y = jsonVector[1].GetFloat();
-            this->z = jsonVector[2].GetFloat();
+            x = jsonVector[0].GetFloat();
+            y = jsonVector[1].GetFloat();
+            z = jsonVector[2].GetFloat();
         }
     }
     Vec3 operator + (const Vec3 &v) const
@@ -130,6 +128,8 @@ public:
     { return Vec3(x * r, y * r, z * r); }
     Vec3 operator * (const Vec3 &v) const
     { return Vec3(x * v.x, y * v.y, z * v.z); }
+    Vec3 operator / (const T &r) const
+    { return Vec3(x / r, y / r, z / r); }
     T dotProduct(const Vec3<T> &v) const
     { return x * v.x + y * v.y + z * v.z; }
     Vec3& operator /= (const T &r)

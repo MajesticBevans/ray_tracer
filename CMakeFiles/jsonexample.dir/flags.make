@@ -6,5 +6,5 @@ CXX_FLAGS =
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/mnt/c/Users/barev/Desktop/RayTracer -I/mnt/c/Users/barev/Desktop/RayTracer/parsers -I/mnt/c/Users/barev/Desktop/RayTracer/math 
+CXX_INCLUDES = -I/mnt/c/Users/barev/Desktop/ray_tracer -I/mnt/c/Users/barev/Desktop/ray_tracer/parsers -I/mnt/c/Users/barev/Desktop/ray_tracer/math 
 

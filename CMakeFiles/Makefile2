@@ -44,10 +44,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /mnt/c/Users/barev/Desktop/RayTracer
+CMAKE_SOURCE_DIR = /mnt/c/Users/barev/Desktop/ray_tracer
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /mnt/c/Users/barev/Desktop/RayTracer
+CMAKE_BINARY_DIR = /mnt/c/Users/barev/Desktop/ray_tracer
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -78,14 +78,14 @@ clean: CMakeFiles/raytracer.dir/clean
 CMakeFiles/jsonexample.dir/all:
 	$(MAKE) -f CMakeFiles/jsonexample.dir/build.make CMakeFiles/jsonexample.dir/depend
 	$(MAKE) -f CMakeFiles/jsonexample.dir/build.make CMakeFiles/jsonexample.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/barev/Desktop/RayTracer/CMakeFiles --progress-num=1,2 "Built target jsonexample"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/barev/Desktop/ray_tracer/CMakeFiles --progress-num=1,2 "Built target jsonexample"
 .PHONY : CMakeFiles/jsonexample.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/jsonexample.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/barev/Desktop/RayTracer/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/barev/Desktop/ray_tracer/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/jsonexample.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/barev/Desktop/RayTracer/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/barev/Desktop/ray_tracer/CMakeFiles 0
 .PHONY : CMakeFiles/jsonexample.dir/rule
 
 # Convenience name for target.
@@ -105,14 +105,14 @@ CMakeFiles/jsonexample.dir/clean:
 CMakeFiles/vectorexample.dir/all:
 	$(MAKE) -f CMakeFiles/vectorexample.dir/build.make CMakeFiles/vectorexample.dir/depend
 	$(MAKE) -f CMakeFiles/vectorexample.dir/build.make CMakeFiles/vectorexample.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/barev/Desktop/RayTracer/CMakeFiles --progress-num=21,22 "Built target vectorexample"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/barev/Desktop/ray_tracer/CMakeFiles --progress-num=21,22 "Built target vectorexample"
 .PHONY : CMakeFiles/vectorexample.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/vectorexample.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/barev/Desktop/RayTracer/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/barev/Desktop/ray_tracer/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/vectorexample.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/barev/Desktop/RayTracer/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/barev/Desktop/ray_tracer/CMakeFiles 0
 .PHONY : CMakeFiles/vectorexample.dir/rule
 
 # Convenience name for target.
@@ -132,14 +132,14 @@ CMakeFiles/vectorexample.dir/clean:
 CMakeFiles/raytracer.dir/all:
 	$(MAKE) -f CMakeFiles/raytracer.dir/build.make CMakeFiles/raytracer.dir/depend
 	$(MAKE) -f CMakeFiles/raytracer.dir/build.make CMakeFiles/raytracer.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/barev/Desktop/RayTracer/CMakeFiles --progress-num=3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20 "Built target raytracer"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/barev/Desktop/ray_tracer/CMakeFiles --progress-num=3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20 "Built target raytracer"
 .PHONY : CMakeFiles/raytracer.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/raytracer.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/barev/Desktop/RayTracer/CMakeFiles 18
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/barev/Desktop/ray_tracer/CMakeFiles 18
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/raytracer.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/barev/Desktop/RayTracer/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/barev/Desktop/ray_tracer/CMakeFiles 0
 .PHONY : CMakeFiles/raytracer.dir/rule
 
 # Convenience name for target.

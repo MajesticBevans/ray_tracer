@@ -6,11 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/mnt/c/Users/barev/Desktop/RayTracer/examples/vecMatrixExample.cpp
+/mnt/c/Users/barev/Desktop/ray_tracer/examples/vecMatrixExample.cpp
 iostream
 -
 math/geometry.h
-/mnt/c/Users/barev/Desktop/RayTracer/examples/math/geometry.h
+/mnt/c/Users/barev/Desktop/ray_tracer/examples/math/geometry.h
 
 math/geometry.h
 cstdlib

@@ -6,15 +6,15 @@
 
 #IncludeRegexTransform: 
 
-/mnt/c/Users/barev/Desktop/RayTracer/examples/jsonExample.cpp
+/mnt/c/Users/barev/Desktop/ray_tracer/examples/jsonExample.cpp
 iostream
 -
 fstream
 -
 rapidjson/istreamwrapper.h
-/mnt/c/Users/barev/Desktop/RayTracer/examples/rapidjson/istreamwrapper.h
+/mnt/c/Users/barev/Desktop/ray_tracer/examples/rapidjson/istreamwrapper.h
 rapidjson/document.h
-/mnt/c/Users/barev/Desktop/RayTracer/examples/rapidjson/document.h
+/mnt/c/Users/barev/Desktop/ray_tracer/examples/rapidjson/document.h
 
 parsers/rapidjson/allocators.h
 rapidjson.h
