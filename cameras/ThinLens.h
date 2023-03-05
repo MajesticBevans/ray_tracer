@@ -17,8 +17,8 @@ public:
 	//
 	// Constructors
 	//
-	ThinLens():Camera(){};
-	ThinLens(int width, int height, int fov, Vec3f pos);
+	ThinLens();
+	ThinLens(int width, int height, int fov, Vec3f pos, Vec3f lookat, Vec3f up);
 
 	//
 	//Destructor
@@ -29,6 +29,8 @@ public:
 	// print function (implementing abstract function of base class)
 	//
 	void printCamera();
+
+	Vec3f getPixelPos(float u, float v);
 
 };
 

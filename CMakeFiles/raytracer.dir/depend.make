@@ -129,12 +129,12 @@ CMakeFiles/raytracer.dir/core/Material.cpp.o: parsers/rapidjson/rapidjson.h
 CMakeFiles/raytracer.dir/core/Material.cpp.o: parsers/rapidjson/reader.h
 CMakeFiles/raytracer.dir/core/Material.cpp.o: parsers/rapidjson/stream.h
 
-CMakeFiles/raytracer.dir/core/RayTracer.cpp.o: core/RayTracer.cpp
-CMakeFiles/raytracer.dir/core/RayTracer.cpp.o: core/RayTracer.h
 CMakeFiles/raytracer.dir/core/RayTracer.cpp.o: core/Camera.h
 CMakeFiles/raytracer.dir/core/RayTracer.cpp.o: core/LightSource.h
 CMakeFiles/raytracer.dir/core/RayTracer.cpp.o: core/Material.h
 CMakeFiles/raytracer.dir/core/RayTracer.cpp.o: core/RayHitStructs.h
+CMakeFiles/raytracer.dir/core/RayTracer.cpp.o: core/RayTracer.cpp
+CMakeFiles/raytracer.dir/core/RayTracer.cpp.o: core/RayTracer.h
 CMakeFiles/raytracer.dir/core/RayTracer.cpp.o: core/Scene.h
 CMakeFiles/raytracer.dir/core/RayTracer.cpp.o: core/Shape.h
 CMakeFiles/raytracer.dir/core/RayTracer.cpp.o: math/geometry.h
@@ -160,12 +160,10 @@ CMakeFiles/raytracer.dir/core/RayTracer.cpp.o: parsers/rapidjson/reader.h
 CMakeFiles/raytracer.dir/core/RayTracer.cpp.o: parsers/rapidjson/stream.h
 
 CMakeFiles/raytracer.dir/core/Scene.cpp.o: core/LightSource.h
-CMakeFiles/raytracer.dir/core/Scene.cpp.o: core/Scene.cpp
-CMakeFiles/raytracer.dir/core/Scene.cpp.o: core/Scene.h
-CMakeFiles/raytracer.dir/core/Scene.cpp.o: core/Shape.h
-CMakeFiles/raytracer.dir/core/Scene.cpp.o: core/LightSource.h
 CMakeFiles/raytracer.dir/core/Scene.cpp.o: core/Material.h
 CMakeFiles/raytracer.dir/core/Scene.cpp.o: core/RayHitStructs.h
+CMakeFiles/raytracer.dir/core/Scene.cpp.o: core/Scene.cpp
+CMakeFiles/raytracer.dir/core/Scene.cpp.o: core/Scene.h
 CMakeFiles/raytracer.dir/core/Scene.cpp.o: core/Shape.h
 CMakeFiles/raytracer.dir/core/Scene.cpp.o: math/geometry.h
 CMakeFiles/raytracer.dir/core/Scene.cpp.o: parsers/rapidjson/allocators.h
@@ -189,9 +187,10 @@ CMakeFiles/raytracer.dir/core/Scene.cpp.o: parsers/rapidjson/rapidjson.h
 CMakeFiles/raytracer.dir/core/Scene.cpp.o: parsers/rapidjson/reader.h
 CMakeFiles/raytracer.dir/core/Scene.cpp.o: parsers/rapidjson/stream.h
 
+CMakeFiles/raytracer.dir/core/Shape.cpp.o: core/Material.h
+CMakeFiles/raytracer.dir/core/Shape.cpp.o: core/RayHitStructs.h
 CMakeFiles/raytracer.dir/core/Shape.cpp.o: core/Shape.cpp
 CMakeFiles/raytracer.dir/core/Shape.cpp.o: core/Shape.h
-CMakeFiles/raytracer.dir/core/Shape.cpp.o: core/Material.h
 CMakeFiles/raytracer.dir/core/Shape.cpp.o: core/RayHitStructs.h
 CMakeFiles/raytracer.dir/core/Shape.cpp.o: core/Shape.h
 CMakeFiles/raytracer.dir/core/Shape.cpp.o: math/geometry.h
@@ -356,7 +355,6 @@ CMakeFiles/raytracer.dir/shapes/BVH.cpp.o: parsers/rapidjson/reader.h
 CMakeFiles/raytracer.dir/shapes/BVH.cpp.o: parsers/rapidjson/stream.h
 
 CMakeFiles/raytracer.dir/shapes/Plane.cpp.o: shapes/Plane.cpp
-CMakeFiles/raytracer.dir/shapes/Plane.cpp.o: shapes/Plane.h
 CMakeFiles/raytracer.dir/shapes/Plane.cpp.o: core/Material.h
 CMakeFiles/raytracer.dir/shapes/Plane.cpp.o: core/RayHitStructs.h
 CMakeFiles/raytracer.dir/shapes/Plane.cpp.o: core/Shape.h
@@ -381,6 +379,7 @@ CMakeFiles/raytracer.dir/shapes/Plane.cpp.o: parsers/rapidjson/msinttypes/stdint
 CMakeFiles/raytracer.dir/shapes/Plane.cpp.o: parsers/rapidjson/rapidjson.h
 CMakeFiles/raytracer.dir/shapes/Plane.cpp.o: parsers/rapidjson/reader.h
 CMakeFiles/raytracer.dir/shapes/Plane.cpp.o: parsers/rapidjson/stream.h
+CMakeFiles/raytracer.dir/shapes/Plane.cpp.o: shapes/Plane.h
 
 CMakeFiles/raytracer.dir/shapes/Sphere.cpp.o: shapes/Sphere.cpp
 CMakeFiles/raytracer.dir/shapes/Sphere.cpp.o: shapes/Sphere.h

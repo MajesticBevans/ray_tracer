@@ -10,9 +10,13 @@
 namespace rt
 {
 	//
-	// ThinLens constructor (example)
+	// ThinLens constructors
 	//
-	ThinLens::ThinLens(int width, int height, int fov, Vec3f pos):Camera(width, height, fov, pos)
+	
+	ThinLens::ThinLens() {}
+
+	ThinLens::ThinLens(int width, int height, int fov, Vec3f pos, Vec3f lookat, Vec3f up) :
+	Camera(width, height, fov, pos, lookat, up)
 	{
 		this->width = width;
 		this->height = height;
@@ -29,5 +33,7 @@ namespace rt
 		printf("I am a thin lens camera at position (%f, %f, %f)\n", pos.x, pos.y, pos.z);
 		printf("width: %dpx, height: %dpx, fov:%d \n", width, height, fov);
 	}
+
+	Vec3f ThinLens::getPixelPos(float u, float v) { return Vec3f(); }
 
 } //namespace rt

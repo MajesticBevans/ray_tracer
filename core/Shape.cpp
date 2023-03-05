@@ -78,6 +78,8 @@ namespace rt
         return 0;
     }
 
+    Material* Shape::getMaterial() { return material; }
+
 
 
 } //namespace rt

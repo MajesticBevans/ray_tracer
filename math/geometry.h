@@ -136,12 +136,26 @@ public:
     { x /= r, y /= r, z /= r; return *this; }
     Vec3& operator *= (const T &r)
     { x *= r, y *= r, z *= r; return *this; }
+    Vec3& operator += (const T &r)
+    { x += r, y += r, z += r; return *this; }
+    Vec3& operator -= (const T &r)
+    { x -= r, y -= r, z -= r; return *this; }
+    Vec3& operator /= (const Vec3 &v)
+    { x /= v.x, y /= v.y, z /= v.z; return *this; }
+    Vec3& operator *= (const Vec3 &v)
+    { x *= v.x, y *= v.y, z *= v.z; return *this; }
+    Vec3& operator += (const Vec3 &v)
+    { x += v.x, y += v.y, z += v.y; return *this; }
+    Vec3& operator -= (const Vec3 &v)
+    { x -= v.x, y -= v.y, z -= v.y; return *this; }
     Vec3 crossProduct(const Vec3<T> &v) const
     { return Vec3<T>(y * v.z - z * v.y, z * v.x - x * v.z, x * v.y - y * v.x); }
     T norm() const
     { return x * x + y * y + z * z; }
     T length() const
     { return sqrt(norm()); }
+    T distanceTo(const Vec3<T> &v) const
+    { return (*this - v).length(); }
     //[comment]
     // The next two operators are sometimes called access operators or
     // accessors. The Vec coordinates can be accessed that way v[0], v[1], v[2],

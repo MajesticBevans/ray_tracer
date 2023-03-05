@@ -41,7 +41,7 @@ public:
 	//
 	virtual void printCamera()=0;
 
-	virtual Vec3f getPixelPos(float u, float v);
+	virtual Vec3f getPixelPos(float u, float v)=0;
 
 
 

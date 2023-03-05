@@ -27,14 +27,16 @@ namespace rt
 
 		float aspect_ratio = (float)this->width / (float)this->height;
 		float fov_radians = fov * (/*PI*/ acos(-1) / 180.0F);
-		float focal_length = (this->pos.dotProduct(this->lookat) / 2.0F) / tan(fov_radians / 2.0F);
+		const float distanceToPlane = 1.0F; // chosen arbitrarily for now
 
-		image_height = 2.0F * tan(fov_radians / 2.0F);
+
+		image_height = 2.0F * tan(fov_radians / 2.0F) * distanceToPlane;
 		image_width = image_height * aspect_ratio;
+
 		right = this->up.crossProduct(this->lookat).normalize();
 		this->up = this->lookat.crossProduct(right).normalize(); // re-assign up vector to ensure orthogonal with lookat vector
-		image_centre = this->pos + focal_length * this->lookat;
-		image_bottom_left = this->image_centre - (image_width * right) / 2.0F - (image_height * this->up) / 2.0F;
+		image_centre = this->pos + distanceToPlane * this->lookat;
+		image_bottom_left = this->image_centre - (image_width / 2.0F) * right - (image_height / 2.0F) * this->up;
 	}
 
 	/**
@@ -45,6 +47,7 @@ namespace rt
 	{
 		printf("I am a pinhole camera at position (%f, %f, %f)\n", pos.x, pos.y, pos.z);
 		printf("width: %dpx, height: %dpx, fov:%d \n", width, height, fov);
+		printf("what");
 	}
 
 	Vec3f Pinhole::getPixelPos(float u, float v)

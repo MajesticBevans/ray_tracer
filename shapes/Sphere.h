@@ -8,7 +8,6 @@
 #define SPHERE_H_
 
 #include "math/geometry.h"
-#include "core/RayHitStructs.h"
 #include "core/Shape.h"
 
 namespace rt{

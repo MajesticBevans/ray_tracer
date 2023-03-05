@@ -10,8 +10,8 @@
 
 #include "rapidjson/document.h"
 
-#include "core/LightSource.h"
-#include "core/Shape.h"
+#include "LightSource.h"
+#include "Shape.h"
 
 
 using namespace rapidjson;
@@ -26,6 +26,14 @@ public:
 	void createScene(Value& scenespecs);
 
 	void printScene();
+
+	//
+	// Getters and Setters
+	//
+
+	std::vector<LightSource*> getLights();
+	std::vector<Shape*> getShapes();
+	Vec3f getBackgroundColour();
 
 
 private:

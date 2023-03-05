@@ -6,9 +6,10 @@
 #ifndef SHAPE_H_
 #define SHAPE_H_
 
-#include "core/RayHitStructs.h"
-#include "core/Material.h"
 #include "rapidjson/document.h"
+
+#include "RayHitStructs.h"
+#include "Material.h"
 
 using namespace rapidjson;
 
@@ -36,6 +37,8 @@ public:
 	static Shape* createShape(Value& shapeSpecs);
 
 	virtual void printShape()=0;
+
+	Material* getMaterial();
 
 
 protected:

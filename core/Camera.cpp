@@ -48,7 +48,9 @@ Camera* Camera::createCamera(Value& cameraSpecs){
 		return new ThinLens(cameraSpecs["width"].GetInt(),
 				cameraSpecs["height"].GetInt(),
 				cameraSpecs["fov"].GetInt(),
-				Vec3f(cameraSpecs["position"]));
+				Vec3f(cameraSpecs["position"]),
+				Vec3f(cameraSpecs["lookat"]),
+				Vec3f(cameraSpecs["up"]));
 	}
 
 	return 0;

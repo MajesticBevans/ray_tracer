@@ -23,7 +23,7 @@ materials/*.cpp
 
 
 #raytracer executable
-add_executable(raytracer ${source} math/geometry.h ${rapidjson_headers})
+add_executable(raytracer ${source} math/geometry.h ${rapidjson_headers} ${struct_headers})
 
 #json example executable
 add_executable(jsonexample examples/jsonExample.cpp ${rapidjson_headers})

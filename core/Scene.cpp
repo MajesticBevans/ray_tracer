@@ -3,8 +3,6 @@
  *
  */
 #include "Scene.h"
-#include "LightSource.h"
-#include "Shape.h"
 
 namespace rt
 {
@@ -57,5 +55,8 @@ void Scene::printScene()
 }
 
 
+std::vector<LightSource*> Scene::getLights() { return lightSources; }
+std::vector<Shape*> Scene::getShapes() { return shapes; }
+Vec3f Scene::getBackgroundColour() { return background_colour; }
 
 } //namespace rt

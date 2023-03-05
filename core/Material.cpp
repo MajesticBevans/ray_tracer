@@ -7,6 +7,7 @@
 
 namespace rt
 {
+
     Material::Material(){};
 
     Material::Material(Value& specs)
@@ -72,14 +73,11 @@ namespace rt
         this->usingKr = true;
     }
 
-    float ks, kd, kr;
-    float specular;
-    Vec3f diffuse;
-    std::string tPath;
-    int tWidth;
-    int tHeight;
-    bool usingPath;
-    bool usingKr;
+    float Material::getKs() { return ks; }
+    float Material::getKd() { return kd; }
+    float Material::getKr() { return usingKr ? kr : -1.0F; }
+    float Material::getSpecular() { return specular; }
+    Vec3f Material::getDiffuse() { return diffuse; }
 
 } //namespace rt
 

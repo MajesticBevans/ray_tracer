@@ -27,7 +27,7 @@ namespace rt
 
 	Sphere::~Sphere()
 	{
-		// REMEMBER TO DELETE DYNAMICALLY ALLOCATED MEMORY
+
 	}
 
 
@@ -41,9 +41,23 @@ namespace rt
 	 *
 	 */
 	Hit Sphere::intersect(Ray ray)
-	{
-		Hit h;
-		return h;
+	{		
+		Vec3f originToCentre = (center - ray.origin).normalize();
+		
+		float distanceToPerpendicular = originToCentre.dotProduct(ray.direction);
+		
+		if (distanceToPerpendicular <= 0) { return Hit(); }
+		
+		float d2 = originToCentre.dotProduct(originToCentre) - distanceToPerpendicular * distanceToPerpendicular;
+		
+		if (d2 > radius * radius) { return Hit(); }
+		
+		float thc = sqrt(radius * radius - d2);
+		float t0 = distanceToPerpendicular - thc;
+		Vec3f intersectionPoint = ray.origin + ray.direction * t0;
+		Vec3f normal = (intersectionPoint - center).normalize();
+		
+		return Hit(intersectionPoint, t0, normal, this->material);
 	}
 
 	void Sphere::printShape()

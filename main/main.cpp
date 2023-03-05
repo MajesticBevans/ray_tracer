@@ -38,8 +38,7 @@ int main(int argc, char* argv[]){
 	Camera* camera=Camera::createCamera(d["camera"]);
 
 	//print camera data (based on the input file provided)
-	camera->printCamera();
-
+	//camera->printCamera();
 	//generate the scene according to the input file
 	Scene* scene=new Scene();
 	scene->createScene(d["scene"]);
@@ -49,7 +48,7 @@ int main(int argc, char* argv[]){
 	//
 	Vec3f* pixelbuffer=RayTracer::render(camera, scene, d["nbounces"].GetInt());
 
-	scene->printScene();
+	// scene->printScene();
 
 	//convert linear RGB pixel values [0-1] to range 0-255
 	RayTracer::tonemap(pixelbuffer);

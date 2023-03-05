@@ -130,14 +130,14 @@ CMakeFiles/raytracer.dir/core/Material.cpp.o
  parsers/rapidjson/reader.h
  parsers/rapidjson/stream.h
 CMakeFiles/raytracer.dir/core/RayTracer.cpp.o
+ /mnt/c/Users/barev/Desktop/ray_tracer/core/Camera.h
+ /mnt/c/Users/barev/Desktop/ray_tracer/core/LightSource.h
+ /mnt/c/Users/barev/Desktop/ray_tracer/core/Material.h
+ /mnt/c/Users/barev/Desktop/ray_tracer/core/RayHitStructs.h
  /mnt/c/Users/barev/Desktop/ray_tracer/core/RayTracer.cpp
  /mnt/c/Users/barev/Desktop/ray_tracer/core/RayTracer.h
- core/Camera.h
- core/LightSource.h
- core/Material.h
- core/RayHitStructs.h
- core/Scene.h
- core/Shape.h
+ /mnt/c/Users/barev/Desktop/ray_tracer/core/Scene.h
+ /mnt/c/Users/barev/Desktop/ray_tracer/core/Shape.h
  math/geometry.h
  parsers/rapidjson/allocators.h
  parsers/rapidjson/document.h
@@ -161,13 +161,11 @@ CMakeFiles/raytracer.dir/core/RayTracer.cpp.o
  parsers/rapidjson/stream.h
 CMakeFiles/raytracer.dir/core/Scene.cpp.o
  /mnt/c/Users/barev/Desktop/ray_tracer/core/LightSource.h
+ /mnt/c/Users/barev/Desktop/ray_tracer/core/Material.h
+ /mnt/c/Users/barev/Desktop/ray_tracer/core/RayHitStructs.h
  /mnt/c/Users/barev/Desktop/ray_tracer/core/Scene.cpp
  /mnt/c/Users/barev/Desktop/ray_tracer/core/Scene.h
  /mnt/c/Users/barev/Desktop/ray_tracer/core/Shape.h
- core/LightSource.h
- core/Material.h
- core/RayHitStructs.h
- core/Shape.h
  math/geometry.h
  parsers/rapidjson/allocators.h
  parsers/rapidjson/document.h
@@ -190,9 +188,10 @@ CMakeFiles/raytracer.dir/core/Scene.cpp.o
  parsers/rapidjson/reader.h
  parsers/rapidjson/stream.h
 CMakeFiles/raytracer.dir/core/Shape.cpp.o
+ /mnt/c/Users/barev/Desktop/ray_tracer/core/Material.h
+ /mnt/c/Users/barev/Desktop/ray_tracer/core/RayHitStructs.h
  /mnt/c/Users/barev/Desktop/ray_tracer/core/Shape.cpp
  /mnt/c/Users/barev/Desktop/ray_tracer/core/Shape.h
- core/Material.h
  core/RayHitStructs.h
  core/Shape.h
  math/geometry.h
@@ -357,7 +356,6 @@ CMakeFiles/raytracer.dir/shapes/BVH.cpp.o
  parsers/rapidjson/stream.h
 CMakeFiles/raytracer.dir/shapes/Plane.cpp.o
  /mnt/c/Users/barev/Desktop/ray_tracer/shapes/Plane.cpp
- /mnt/c/Users/barev/Desktop/ray_tracer/shapes/Plane.h
  core/Material.h
  core/RayHitStructs.h
  core/Shape.h
@@ -382,6 +380,7 @@ CMakeFiles/raytracer.dir/shapes/Plane.cpp.o
  parsers/rapidjson/rapidjson.h
  parsers/rapidjson/reader.h
  parsers/rapidjson/stream.h
+ shapes/Plane.h
 CMakeFiles/raytracer.dir/shapes/Sphere.cpp.o
  /mnt/c/Users/barev/Desktop/ray_tracer/shapes/Sphere.cpp
  /mnt/c/Users/barev/Desktop/ray_tracer/shapes/Sphere.h

@@ -16,6 +16,10 @@ class Material
 {
 public:
 
+    //
+    // Constructors
+    //
+
     Material();
     Material(Value& specs);
     Material(float ks, float kd, float specular, Vec3f diffuse);
@@ -23,8 +27,22 @@ public:
     Material(float ks, float kd, float specular, Vec3f diffuse, std::string tPath, int tWidth, int tHeight);
     Material(float ks, float kd, float kr, float specular, Vec3f diffuse, std::string tPath, int tWidth, int tHeight);
 
-
+    //
+    // Destructor
+    //
     ~Material(){};
+
+
+    //
+    // Getters and setters
+    //
+
+    float getKs();
+    float getKd();
+    float getKr();
+    float getSpecular();
+    Vec3f getDiffuse();
+
 
 
 private:

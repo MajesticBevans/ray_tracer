@@ -4,13 +4,14 @@
  *
  */
 
-#include "Plane.h"
+#include "shapes/Plane.h"
 
 namespace rt
 {
 	//
 	// Constructors
 	//
+
 	Plane::Plane(){};
 	Plane::Plane(Vec3f v0, Vec3f v1, Vec3f v2, Vec3f v3, Material* material)
     {
@@ -43,6 +44,7 @@ namespace rt
 	//
 	// Functions that need to be implemented, since Sphere is a subclass of Shape
 	//
+    
 	Hit Plane::intersect(Ray ray)
     {
         return Hit();
