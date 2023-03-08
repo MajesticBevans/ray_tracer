@@ -42,10 +42,8 @@ namespace rt
 	 */
 	Hit Sphere::intersect(Ray ray)
 	{		
-		Vec3f originToCentre = (center - ray.origin).normalize();
-		
+		Vec3f originToCentre = (center - ray.origin);
 		float distanceToPerpendicular = originToCentre.dotProduct(ray.direction);
-		
 		if (distanceToPerpendicular <= 0) { return Hit(); }
 		
 		float d2 = originToCentre.dotProduct(originToCentre) - distanceToPerpendicular * distanceToPerpendicular;
@@ -54,10 +52,16 @@ namespace rt
 		
 		float thc = sqrt(radius * radius - d2);
 		float t0 = distanceToPerpendicular - thc;
-		Vec3f intersectionPoint = ray.origin + ray.direction * t0;
+		float t1 = distanceToPerpendicular + thc;
+		float intersect;
+
+		if (t0 <= t1 && t0 > 0) { intersect = t0; }
+		else if (t1 > t0 && t1 > 0) { intersect = t1; }
+		else { return Hit(); }
+
+		Vec3f intersectionPoint = ray.origin + ray.direction * intersect;
 		Vec3f normal = (intersectionPoint - center).normalize();
-		
-		return Hit(intersectionPoint, t0, normal, this->material);
+		return Hit(intersectionPoint, intersect, normal, this->material);
 	}
 
 	void Sphere::printShape()

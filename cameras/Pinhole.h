@@ -37,6 +37,7 @@ public:
 
 	float getImageHeight();
 	float getImageWidth();
+	float getDistanceToPlane();
 	Vec3f getRight();
 	Vec3f getImageCentre();
 	Vec3f getImageBottomLeft();
@@ -44,6 +45,7 @@ public:
 private:
 	float image_height;
 	float image_width;
+	float distanceToPlane;
 	Vec3f right;
 	Vec3f image_centre;
 	Vec3f image_bottom_left;

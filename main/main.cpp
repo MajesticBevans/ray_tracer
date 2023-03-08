@@ -46,12 +46,13 @@ int main(int argc, char* argv[]){
 	//
 	// Main function, render scene
 	//
+
 	Vec3f* pixelbuffer=RayTracer::render(camera, scene, d["nbounces"].GetInt());
 
 	// scene->printScene();
 
 	//convert linear RGB pixel values [0-1] to range 0-255
-	RayTracer::tonemap(pixelbuffer);
+	RayTracer::tonemap(pixelbuffer, camera->getWidth(), camera->getHeight());
 
 
 
