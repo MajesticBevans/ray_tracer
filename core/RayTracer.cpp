@@ -74,10 +74,11 @@ namespace rt
 		{
 			Vec3f l = (lightSource->getPos() - hit->point).normalize();
 			float dot_prod = fmaxf(l.dotProduct(hit->normal), 0.0F);
-
-			returnColour += (lightSource->getId() / 100.0F) * 
-							fmaxf(dot_prod, 0.0F) *
-							hit->material->getDiffuse();
+			//printf("(%f)\n", ((lightSource->getId() / 100.0F) * dot_prod).x);
+			// figure out diffuse shading
+			returnColour += (hit->material->getKd() * hit->material->getDiffuse()) /
+							((lightSource->getId() / 100.0F) * dot_prod);
+			printf("return: (%f, %f, %f)\n", returnColour.x, returnColour.y, returnColour.z);
 		}
 
 		return returnColour;
@@ -91,7 +92,7 @@ namespace rt
 		{
 			Vec3f l = (lightSource->getPos() - hit->point).normalize();
 
-			Vec3f r = (2 * (hit->normal.dotProduct(l)) * hit->normal) - l;
+			Vec3f r = l - (2 * (hit->normal.dotProduct(l)) * hit->normal);
 
 			returnColour += (lightSource->getIs() / 100.0F) * 
 							(powf(fmaxf(r.normalize().dotProduct(v), 0.0F), hit->material->getSpecular())); 

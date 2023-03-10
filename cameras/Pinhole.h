@@ -40,7 +40,7 @@ public:
 	float getDistanceToPlane();
 	Vec3f getRight();
 	Vec3f getImageCentre();
-	Vec3f getImageBottomLeft();
+	Vec3f getImageTopLeft();
 
 private:
 	float image_height;
@@ -48,7 +48,7 @@ private:
 	float distanceToPlane;
 	Vec3f right;
 	Vec3f image_centre;
-	Vec3f image_bottom_left;
+	Vec3f image_top_left;
 };
 
 
