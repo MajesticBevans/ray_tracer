@@ -12,17 +12,21 @@ namespace rt
 
     Material::Material(Value& specs)
     {
-        this->ks = specs["ks"].GetFloat();
-        this->kd = specs["kd"].GetFloat();
-        this->usingKr = specs.HasMember("kr");
-        this->kr = this->usingKr ? specs["kr"].GetFloat() : (float)0;
-        this->specular = specs["specularexponent"].GetFloat();
-        this->diffuse = Vec3f(specs["diffusecolor"]);
-        this->usingPath = specs.HasMember("tPath");
-        if (!this->usingPath) { return; }
-        this->tPath = specs["tPath"].GetString();
-        this->tWidth = specs["tWidth"].GetInt();
-        this->tHeight = specs["tHeight"].GetInt();
+        ks = specs["ks"].GetFloat();
+        kd = specs["kd"].GetFloat();
+
+        bool usingKr = specs.HasMember("kr");
+        kr = usingKr ? specs["kr"].GetFloat() : (float)0;
+
+        specular = specs["specularexponent"].GetFloat();
+        diffuse = Vec3f(specs["diffusecolor"]).normalize();
+
+        bool usingPath = specs.HasMember("tPath");
+        if (!usingPath) { return; }
+
+        tPath = specs["tPath"].GetString();
+        tWidth = specs["tWidth"].GetInt();
+        tHeight = specs["tHeight"].GetInt();
     }
 
     Material::Material(float ks, float kd, float specular, Vec3f diffuse)
@@ -31,8 +35,11 @@ namespace rt
         this->kd = kd;
         this->specular = specular;
         this->diffuse = diffuse;
-        this->usingPath = false;
-        this->usingKr = false;
+
+        kr = 0;
+        tPath = "";
+        tWidth = 0.0F;
+        tHeight = 0.0F;
     }
 
     Material::Material(float ks, float kd, float kr, float specular, Vec3f diffuse)
@@ -42,8 +49,10 @@ namespace rt
         this->kr = kr;
         this->specular = specular;
         this->diffuse = diffuse;
-        this->usingPath = false;
-        this->usingKr = true;
+
+        tPath = "";
+        tWidth = 0.0F;
+        tHeight = 0.0F;
     }
 
     Material::Material(float ks, float kd, float specular, Vec3f diffuse, std::string tPath, int tWidth, int tHeight)
@@ -55,8 +64,8 @@ namespace rt
         this->tPath = tPath;
         this->tWidth = tWidth;
         this->tHeight = tHeight;
-        this->usingPath = true;
-        this->usingKr = false;
+
+        kr = 0.0F;
     }
 
     Material::Material(float ks, float kd, float kr, float specular, Vec3f diffuse, std::string tPath, int tWidth, int tHeight)
@@ -69,13 +78,11 @@ namespace rt
         this->tPath = tPath;
         this->tWidth = tWidth;
         this->tHeight = tHeight;
-        this->usingPath = true;
-        this->usingKr = true;
     }
 
     float Material::getKs() { return ks; }
     float Material::getKd() { return kd; }
-    float Material::getKr() { return usingKr ? kr : -1.0F; }
+    float Material::getKr() { return kr; }
     float Material::getSpecular() { return specular; }
     Vec3f Material::getDiffuse() { return diffuse; }
 

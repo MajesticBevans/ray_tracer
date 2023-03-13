@@ -31,7 +31,7 @@ namespace rt
 				Vec3f direction = (pixelPos - camera->getPos()).normalize();
 				float distanceToPlane = camera->getPos().distanceTo(pixelPos);
 				pixelbuffer[j * camera->getWidth() + i] = 
-				shootRay(Ray(camera->getPos(), direction, RayType::PRIMARY, 0), scene, nbounces);
+				shootRay(Ray(camera->getPos(), direction, RayType::PRIMARY), scene, 0.0F, nbounces);
 			}
 		}
 
@@ -39,32 +39,60 @@ namespace rt
 
 	}
 
-	Vec3f RayTracer::shootRay(Ray ray, Scene* scene, int nbounces)
+	Vec3f RayTracer::shootRay(Ray ray, Scene* scene, float startDistance, int nbounces)
 	{
-		Hit* closestHit = new Hit();
-
+		// Max bounces reached
+		if (nbounces < 0) 
+		{
+			return scene->getBackgroundColour();
+		}
+		// Find the closest hit point
+		Hit closestHit;
+		bool hitSomething = false;
 		for (auto shape : scene->getShapes())
 		{
 			Hit h = shape->intersect(ray);
-			if (h.isHit && 
-			(!closestHit->isHit || h.distance < closestHit->distance))
+			if (h.isHit && (!hitSomething || h.distance < closestHit.distance))
 			{
-				//printf("hit at (%f, %f, %f)\n", h.point.x, h.point.y, h.point.z);
-				*closestHit = h;
+				closestHit = h;
+				hitSomething = true;
 			}
 		}
 
-		if (!closestHit->isHit)
+		// If no hit, return background color
+		if (!hitSomething)
 		{
-			delete closestHit;
 			return scene->getBackgroundColour();
 		}
 
-		Vec3f finalColour = getDiffuseRGB(closestHit, scene) * closestHit->material->getKd() + 
-							getSpecularRGB(closestHit, scene, ray.direction) * closestHit->material->getKs();
-		delete closestHit;
-		return finalColour;
+		// Compute the diffuse and specular colors
+		Material* mat = closestHit.material;
+		Vec3f diffuse = getDiffuseRGB(&closestHit, scene);
+		Vec3f specular = getSpecularRGB(&closestHit, scene, ray.direction);
+
+		// Compute the reflection color by recursively shooting a new ray
+		// in the reflected direction and averaging the results
+		Vec3f reflection = Vec3f();
+
+		if (mat->getKr() > 0)
+		{
+			Vec3f reflectedDir = reflect(ray.direction, closestHit.normal);
+			Ray reflectedRay = Ray(closestHit.point + closestHit.normal * 0.001F, reflectedDir, RayType::SECONDARY);
+			reflection = shootRay(reflectedRay, scene, closestHit.distance, nbounces - 1);
+		}
+
+		// Compute the total color as a weighted sum of the diffuse, specular,
+		// and reflection colors, and return it
+		Vec3f sumColour = diffuse * mat->getKd() + specular * mat->getKs() + reflection * mat->getKr();
+
+		sumColour /= powf(startDistance + closestHit.distance, 0.2F);
+		if (sumColour.x > 1.0F || sumColour.y > 1.0F || sumColour.z > 1.0F)
+		{
+			//printf("(%f, %f, %f)\n", sumColour.x, sumColour.y, sumColour.z);
+		}
+		return sumColour;
 	}
+
 
 	Vec3f RayTracer::getDiffuseRGB(Hit* hit, Scene* scene)
 	{
@@ -74,11 +102,8 @@ namespace rt
 		{
 			Vec3f l = (lightSource->getPos() - hit->point).normalize();
 			float dot_prod = fmaxf(l.dotProduct(hit->normal), 0.0F);
-			//printf("(%f)\n", ((lightSource->getId() / 100.0F) * dot_prod).x);
-			// figure out diffuse shading
-			returnColour += (hit->material->getKd() * hit->material->getDiffuse()) /
-							((lightSource->getId() / 100.0F) * dot_prod);
-			printf("return: (%f, %f, %f)\n", returnColour.x, returnColour.y, returnColour.z);
+			Vec3f id = lightSource->getId() / 100.0F;
+			returnColour += hit->material->getDiffuse() * id * dot_prod;
 		}
 
 		return returnColour;
@@ -90,14 +115,22 @@ namespace rt
 
 		for (auto lightSource : scene->getLights())
 		{
-			Vec3f l = (lightSource->getPos() - hit->point).normalize();
+			Vec3f is = lightSource->getIs() / 100.0F;
 
-			Vec3f r = l - (2 * (hit->normal.dotProduct(l)) * hit->normal);
-
-			returnColour += (lightSource->getIs() / 100.0F) * 
-							(powf(fmaxf(r.normalize().dotProduct(v), 0.0F), hit->material->getSpecular())); 
+			Vec3f l = (lightSource->getPos() - hit->point);
+			Vec3f r = reflect(l, hit->normal);
+			float dot_prod = fmax(r.dotProduct(v), 0.0F);
+			
+			returnColour += is * powf(dot_prod, hit->material->getSpecular()); 
 		}
 		return returnColour;
+	}
+
+	Vec3f RayTracer::reflect(Vec3f l, Vec3f n)
+	{
+		l.normalize();
+		n.normalize();
+		return (l - (2 * (n.dotProduct(l) * n)));
 	}
 
 	/**
@@ -111,11 +144,9 @@ namespace rt
 	{
 		for (int i = 0; i < width * height; i++)
 		{
-			pixelbuffer[i] *= 255.0F;
-			if (pixelbuffer[i].x > 100.0F)
-			{
-				//printf("(%f, %f, %f)\n", pixelbuffer[i].x, pixelbuffer[i].y, pixelbuffer[i].z);
-			}
+			pixelbuffer[i].x = powf(pixelbuffer[i].x, 1.1F) * 255.0F;
+			pixelbuffer[i].y = powf(pixelbuffer[i].y, 1.1F) * 255.0F;	
+			pixelbuffer[i].z = powf(pixelbuffer[i].z, 1.1F) * 255.0F;
 		}
 	
 		return pixelbuffer;

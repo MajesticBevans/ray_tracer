@@ -1,9 +1,9 @@
 {
-"nbounces":3,
+"nbounces":1,
 "camera":{
     "type":"pinhole",
-    "width":800,
-    "height":800,
+    "width":1600,
+    "height":1600,
     "fov":35,
     "position": [0.0, -3.5, 2.0],
     "lookat": [0.0, 1.0, -0.1],
@@ -44,7 +44,6 @@
         "material":{
             "ks": 0.6,
             "kd": 0.7,
-            "kr": 0.3,
             "specularexponent": 10,
             "diffusecolor": [1.0, 1.0, 1.0]
         }
@@ -71,12 +70,12 @@
         "id": "left wall",
         "type": "triangle",
         "v0": [-2.0, 8.0, 0.0],
-        "v1": [-2.0, 8.0, 5.0],
-        "v2": [-2.0, 0.0, 0.0],
+        "v1": [-2.0, 0.0, 0.0],
+        "v2": [-2.0, 8.0, 5.0],
         "material": {
-            "ks": 0.6,
+            "ks": 1.0,
             "kd": 1.0,
-            "specularexponent": 10,
+            "specularexponent": 2,
             "diffusecolor": [1.0, 0.2, 0.2]
         }
     },
@@ -87,9 +86,9 @@
         "v1": [2.0, 0.0, 0.0],
         "v2": [2.0, 8.0, 5.0],
         "material": {
-            "ks": 0.6,
+            "ks": 1.0,
             "kd": 1.0,
-            "specularexponent": 10,
+            "specularexponent": 2,
             "diffusecolor": [0.2, 0.2, 1.0]
         }
     }

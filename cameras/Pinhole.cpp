@@ -36,7 +36,7 @@ namespace rt
 		right = this->lookat.crossProduct(this->up).normalize();
 		this->up = right.crossProduct(this->lookat).normalize(); // re-assign up vector to ensure orthogonal with lookat vector
 		image_centre = this->pos + distanceToPlane * this->lookat;
-		image_top_left = this->image_centre - right * (image_width / 2.0F) + this->up * (image_height / 2.0F);
+		image_top_right = this->image_centre + right * (image_width / 2.0F) + this->up * (image_height / 2.0F);
 
 	}
 
@@ -53,7 +53,7 @@ namespace rt
 
 	Vec3f Pinhole::getPixelPos(float u, float v)
 	{
-		return image_top_left + (u * image_width * right) - (v * image_height * up); 
+		return image_top_right - (u * image_width * right) - (v * image_height * up); 
 	}
 
 	float Pinhole::getImageHeight() { return image_height; }
@@ -61,7 +61,7 @@ namespace rt
 	float Pinhole::getDistanceToPlane() { return distanceToPlane; }
 	Vec3f Pinhole::getRight() { return right; }
 	Vec3f Pinhole::getImageCentre() { return image_centre; }
-	Vec3f Pinhole::getImageTopLeft() { return image_top_left; }
+	Vec3f Pinhole::getImageTopRight() { return image_top_right; }
 
 } //namespace rt
 

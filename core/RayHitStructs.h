@@ -17,16 +17,14 @@ struct Ray
 	RayType rayType; //type of ray
 	Vec3f origin; //origin of ray
 	Vec3f direction; //direction of ray
-	int bounce; //number of bounces before this ray was created
-
 	//
 	// Ray constructors
 	//
 
 	Ray() {}
 
-	Ray(Vec3f origin, Vec3f direction, RayType rayType, int bounce) : 
-	origin(origin), direction(direction.normalize()), rayType(rayType), bounce(bounce) {}
+	Ray(Vec3f origin, Vec3f direction, RayType rayType) : 
+	origin(origin), direction(direction.normalize()), rayType(rayType) {}
 };
 
 

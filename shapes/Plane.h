@@ -47,7 +47,10 @@ public:
 private:
     std::string id;
 	Vec3f vertices[4];
+	Vec3f edges[4];
 	Material* material;
+	Vec3f normal;
+	float d;
 };
 
 

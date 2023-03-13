@@ -130,6 +130,8 @@ public:
     { return Vec3(x * v.x, y * v.y, z * v.z); }
     Vec3 operator / (const T &r) const
     { return Vec3(x / r, y / r, z / r); }
+    Vec3 operator / (const Vec3 &v) const
+    { return Vec3(x / v.x, y / v.y, z / v.z); }
     T dotProduct(const Vec3<T> &v) const
     { return x * v.x + y * v.y + z * v.z; }
     Vec3& operator /= (const T &r)
@@ -145,7 +147,7 @@ public:
     Vec3& operator *= (const Vec3 &v)
     { x *= v.x, y *= v.y, z *= v.z; return *this; }
     Vec3& operator += (const Vec3 &v)
-    { x += v.x, y += v.y, z += v.y; return *this; }
+    { x += v.x, y += v.y, z += v.z; return *this; }
     Vec3& operator -= (const Vec3 &v)
     { x -= v.x, y -= v.y, z -= v.y; return *this; }
     Vec3 crossProduct(const Vec3<T> &v) const

@@ -21,20 +21,6 @@
     ],
     "shapes":[
     {
-        "type":"sphere",
-        "center": [0.0, 2.7, 0.15],
-        "radius":0.5,
-        "material":{
-            "ks":0.4,
-            "kd":0.8,
-            "specularexponent":3,
-            "diffusecolor":[0.8, 0.6, 0.8],
-            "tPath": "../textures/sky-map.jpg",
-            "tWidth": 850,
-            "tHeight": 480
-        }
-    },
-    {
         "id": "left wall",
         "type": "triangle",
         "v0": [-2.0, 8.0, 0.0],

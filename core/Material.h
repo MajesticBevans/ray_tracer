@@ -52,8 +52,6 @@ private:
     std::string tPath;
     int tWidth;
     int tHeight;
-    bool usingPath;
-    bool usingKr;
 };
 
 

@@ -61,6 +61,9 @@ namespace rt
 
 		Vec3f intersectionPoint = ray.origin + ray.direction * intersect;
 		Vec3f normal = (intersectionPoint - center).normalize();
+
+		if (normal.dotProduct(ray.direction) > 0) { return Hit(); }
+		
 		return Hit(intersectionPoint, intersect, normal, this->material);
 	}
 

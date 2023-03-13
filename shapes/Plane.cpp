@@ -21,6 +21,9 @@ namespace rt
         this->vertices[2] = v2;
         this->vertices[3] = v3;
         this->material = material;
+
+        normal = (v1 - v0).crossProduct(v2 - v0).normalize();
+        d = -normal.dotProduct(v0);
     }
     Plane::Plane(std::string id, Vec3f v0, Vec3f v1, Vec3f v2, Vec3f v3, Material* material)
     {
@@ -29,7 +32,11 @@ namespace rt
         this->vertices[1] = v1;
         this->vertices[2] = v2;
         this->vertices[3] = v3;
+
         this->material = material;
+
+        normal = ((v1 - v0).crossProduct(v2 - v0)).normalize();
+        d = -normal.dotProduct(v0);
     }
 
     //
@@ -45,10 +52,49 @@ namespace rt
 	// Functions that need to be implemented, since Sphere is a subclass of Shape
 	//
     
-	Hit Plane::intersect(Ray ray)
+    Hit Plane::intersect(Ray ray)
     {
-        return Hit();
+        float normalDotDirection = normal.dotProduct(ray.direction);
+        
+        // ray is parallel to plane, no intersection
+        if (normalDotDirection == 0) { return Hit(); }
+
+        float t = -(normal.dotProduct(ray.origin) + d) / normalDotDirection;
+
+        // intersection is behind ray origin
+        if (t < 0) { return Hit(); }
+
+        Vec3f intersection = ray.origin + t * ray.direction;
+
+        // check if intersection is inside the plane
+        bool isInside = true;
+        for (int i = 0; i < 4; i++)
+        {
+            Vec3f edge1 = vertices[(i + 1) % 4] - vertices[i];
+            Vec3f edge2 = intersection - vertices[i];
+            Vec3f crossProduct = edge1.crossProduct(edge2);
+
+            if (normal.dotProduct(crossProduct) < 0)
+            {
+                isInside = false;
+                break;
+            }
+        }
+
+        if (!isInside) { return Hit(); }
+        Vec3f tempNormal;
+        if (normalDotDirection > 0)
+        {
+            tempNormal = normal * -1.0F;
+        }
+        else
+        {
+            tempNormal = Vec3f(normal);
+        }
+
+        return Hit(intersection, t, tempNormal.normalize(), material);
     }
+
 
 	void Plane::printShape()
 	{
