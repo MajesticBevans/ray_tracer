@@ -59,16 +59,17 @@ namespace rt
 			}
 		}
 
+		std::vector<LightSource*> validLights = shootShadowRays(&closestHit, scene);
 		// If no hit, return background color
-		if (!hitSomething)
+		if (!hitSomething || validLights.size() == 0)
 		{
 			return scene->getBackgroundColour();
 		}
 
 		// Compute the diffuse and specular colors
 		Material* mat = closestHit.material;
-		Vec3f diffuse = getDiffuseRGB(&closestHit, scene);
-		Vec3f specular = getSpecularRGB(&closestHit, scene, ray.direction);
+		Vec3f diffuse = getDiffuseRGB(&closestHit, validLights);
+		Vec3f specular = getSpecularRGB(&closestHit, validLights, ray.direction);
 
 		// Compute the reflection color by recursively shooting a new ray
 		// in the reflected direction and averaging the results
@@ -85,37 +86,68 @@ namespace rt
 		// and reflection colors, and return it
 		Vec3f sumColour = diffuse * mat->getKd() + specular * mat->getKs() + reflection * mat->getKr();
 
-		sumColour /= powf(startDistance + closestHit.distance, 0.2F);
-		if (sumColour.x > 1.0F || sumColour.y > 1.0F || sumColour.z > 1.0F)
-		{
-			//printf("(%f, %f, %f)\n", sumColour.x, sumColour.y, sumColour.z);
-		}
+		sumColour /= powf(startDistance + closestHit.distance, 0.05F);
+		if (sumColour.x > 1.0F) { sumColour.x = 1.0F; }
+		if (sumColour.y > 1.0F) { sumColour.y = 1.0F; }
+		if (sumColour.z > 1.0F) {sumColour.z = 1.0F; }
 		return sumColour;
 	}
 
+	std::vector<LightSource*> RayTracer::shootShadowRays(Hit* hit, Scene* scene)
+	{
+		std::vector<LightSource*> returnLights;
 
-	Vec3f RayTracer::getDiffuseRGB(Hit* hit, Scene* scene)
+		// check each light source. If any not blocked, add to returnLights
+		for (auto lightSource : scene->getLights())
+		{
+			Vec3f dir = lightSource->getPos() - hit->point;
+			float distance = dir.length();
+
+			Ray shadowRay = Ray(hit->point + hit->normal * 0.001F, dir.normalize(), RayType::SHADOW);
+
+			bool inShadow = false;
+
+			// check each shape. If one in way of light source, break and don't add
+			// to return
+			for (auto shape : scene->getShapes())
+			{
+				Hit shadowHit = shape->intersect(shadowRay);
+
+				if (shadowHit.isHit && shadowHit.distance < distance)
+				{
+					// point in shadow
+					inShadow = true;
+					break;
+				}
+			}
+			if (!inShadow) { returnLights.push_back(lightSource); }
+		} 
+		return returnLights;
+	}
+
+
+	Vec3f RayTracer::getDiffuseRGB(Hit* hit, std::vector<LightSource*> lights)
 	{
 		Vec3f returnColour = Vec3f();
 
-		for (auto lightSource : scene->getLights())
+		for (auto lightSource : lights)
 		{
 			Vec3f l = (lightSource->getPos() - hit->point).normalize();
 			float dot_prod = fmaxf(l.dotProduct(hit->normal), 0.0F);
-			Vec3f id = lightSource->getId() / 100.0F;
+			Vec3f id = lightSource->getId().normalize();
 			returnColour += hit->material->getDiffuse() * id * dot_prod;
 		}
 
 		return returnColour;
 	}
 
-	Vec3f RayTracer::getSpecularRGB(Hit* hit, Scene* scene, Vec3f v)
+	Vec3f RayTracer::getSpecularRGB(Hit* hit, std::vector<LightSource*> lights, Vec3f v)
 	{
 		Vec3f returnColour = Vec3f();
 
-		for (auto lightSource : scene->getLights())
+		for (auto lightSource : lights)
 		{
-			Vec3f is = lightSource->getIs() / 100.0F;
+			Vec3f is = lightSource->getIs().normalize();
 
 			Vec3f l = (lightSource->getPos() - hit->point);
 			Vec3f r = reflect(l, hit->normal);

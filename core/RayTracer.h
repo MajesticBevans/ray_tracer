@@ -27,9 +27,9 @@ public:
 
 private:
 	static Vec3f shootRay(Ray ray, Scene* scene, float startDistance, int nbounces);
-	static bool shootShadowRay(Hit* hit, Scene* scene);
-	static Vec3f getDiffuseRGB(Hit* hit, Scene* scene);
-	static Vec3f getSpecularRGB(Hit* hit, Scene* scene, Vec3f v);
+	static std::vector<LightSource*> shootShadowRays(Hit* hit, Scene* scene);
+	static Vec3f getDiffuseRGB(Hit* hit, std::vector<LightSource*> lights);
+	static Vec3f getSpecularRGB(Hit* hit, std::vector<LightSource*> lights, Vec3f v);
 	static Vec3f reflect(Vec3f l, Vec3f n);
 };
 

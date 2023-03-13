@@ -51,6 +51,7 @@ private:
 	Material* material;
 	Vec3f normal;
 	float d;
+	bool linear;
 };
 
 

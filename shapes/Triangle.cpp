@@ -16,93 +16,45 @@ namespace rt
 	Triangle::Triangle(Vec3f v0, Vec3f v1, Vec3f v2, Material* material)
     {
         this->id = "";
-        this->vertices[0] = v0;
-		this->vertices[1] = v1;
-		this->vertices[2] = v2;
 		this->material = material;
-		edges[0] = (v1 - v0);
-		edges[1] = (v2 - v1);
-		edges[2] = (v0 - v2);
 
-		normal = edges[0].crossProduct(edges[2]);
+		vertices[0] = v0;
+		vertices[1] = v1;
+		vertices[2] = v2;
+
+		normal = (v1 - v0).crossProduct(v2 - v0);
+
 		if (normal.length() == 0.0f) 
 		{
-			//printf("err: triangle '%s' is a line\n", id.c_str());
+			printf("err: triangle '%s' is a line\n", id.c_str());
 			linear = true;
 			return;
 		}
 
-		Vec3f extraNormal = normal;
-		extraNormal.normalize();
-
-		Vec3f up(0.0f, 1.0f, 0.0f);
-		Vec3f right(1.0f, 0.0f, 0.0f);
-
-		Vec3f facing = extraNormal.crossProduct(up);
-
-		if (facing.length() == 0.0f) 
-		{
-			facing = extraNormal.crossProduct(right);
-		}
-
-		if (facing.z > 0.0F)
-		{
-			clockwise = false;
-			//printf("%s anti\n", id.c_str());
-		}
-		else
-		{
-			clockwise = true;
-			//printf("%s clock\n", id.c_str());
-		}
-
-		d = -normal.dotProduct(vertices[0]);
+		normal = ((v1 - v0).crossProduct(v2 - v0)).normalize();
+        d = -normal.dotProduct(v0);
     }
 
 	Triangle::Triangle(std::string id, Vec3f v0, Vec3f v1, Vec3f v2, Material* material)
 	{
 		this->id = id;
-		this->vertices[0] = v0;
-		this->vertices[1] = v1;
-		this->vertices[2] = v2;
 		this->material = material;
-		edges[0] = (v1 - v0);
-		edges[1] = (v2 - v1);
-		edges[2] = (v0 - v2);
 
-		normal = edges[0].crossProduct(edges[2]);
+		vertices[0] = v0;
+		vertices[1] = v1;
+		vertices[2] = v2;
+
+		normal = (v1 - v0).crossProduct(v2 - v0);
+
 		if (normal.length() == 0.0f) 
 		{
-			//printf("err: triangle '%s' is a line\n", id.c_str());
+			printf("err: triangle '%s' is a line\n", id.c_str());
 			linear = true;
 			return;
 		}
 
-		Vec3f extraNormal = normal;
-		extraNormal.normalize();
-
-		Vec3f up(0.0f, 1.0f, 0.0f);
-		Vec3f right(1.0f, 0.0f, 0.0f);
-
-		Vec3f facing = extraNormal.crossProduct(up);
-
-		if (facing.length() == 0.0f) 
-		{
-			facing = extraNormal.crossProduct(right);
-		}
-
-		if (facing.z > 0.0F)
-		{
-			clockwise = false;
-			//printf("%s anti\n", id.c_str());
-		}
-		else
-		{
-			clockwise = true;
-			//printf("%s clock\n", id.c_str());
-		}
-
-		d = -normal.dotProduct(vertices[0]);
+		normal = ((v1 - v0).crossProduct(v2 - v0)).normalize();
+        d = -normal.dotProduct(v0);
 	}
 
 	Triangle::~Triangle()
@@ -116,43 +68,45 @@ namespace rt
 	//
 	Hit Triangle::intersect(Ray ray)
 	{
-		bool hitBack = false;
-		// if triangle is a line, no intersection
-		if (linear) { return Hit(); }
 		float normalDotDirection = normal.dotProduct(ray.direction);
+        
+        // ray is parallel to plane, no intersection
+        if (normalDotDirection == 0) { return Hit(); }
 
-		// ray is parallel to triangle plane, no intersection
-		if (normalDotDirection == 0) { return Hit(); }
-		if (normalDotDirection > 0) 
-		{ 
-			hitBack = true; 
-		}
+        float t = -(normal.dotProduct(ray.origin) + d) / normalDotDirection;
 
-		float t = (normal.dotProduct(ray.origin) + d) / normalDotDirection;
+        // intersection with plane is behind ray origin
+        if (t < 0) { return Hit(); }
 
-		// intersection is behind ray origin
-		if (t < 0) { return Hit(); }
+        Vec3f intersection = ray.origin + t * ray.direction;
 
-		Vec3f intersection = ray.origin + t * ray.direction;
+        // check if intersection is inside the triangle
+        bool isInside = true;
+        for (int i = 0; i < 3; i++)
+        {
+            Vec3f edge1 = vertices[(i + 1) % 3] - vertices[i];
+            Vec3f edge2 = intersection - vertices[i];
+            Vec3f crossProduct = edge1.crossProduct(edge2);
 
-		// check each edge
-		int edgeCount = 0;
-		for (int i = 0; i < 3; i++)
-		{
-			Vec3f vertToPoint = intersection - vertices[i];
-			Vec3f perp = edges[i].crossProduct(vertToPoint);
+            if (normal.dotProduct(crossProduct) < 0)
+            {
+                isInside = false;
+                break;
+            }
+        }
 
-			// intersection is on inside of edge
-			if (normal.dotProduct(perp) <= 0) { edgeCount++; }
-		}
+        if (!isInside) { return Hit(); }
+        Vec3f tempNormal;
+        if (normalDotDirection > 0)
+        {
+            tempNormal = normal * -1.0F;
+        }
+        else
+        {
+            tempNormal = Vec3f(normal);
+        }
 
-		if (edgeCount == 3)
-		{
-			Vec3f tempNormal = hitBack ? -normal : normal;
-			return Hit(intersection, t, tempNormal.normalize(), material);
-		}
-		else { return Hit(); }
-		
+        return Hit(intersection, t, tempNormal.normalize(), material);
 	}
 
 	void Triangle::printShape()

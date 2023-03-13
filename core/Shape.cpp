@@ -72,7 +72,7 @@ namespace rt
         }
         else if (type.compare("trianglemesh"))
         {
-
+            // not implemented
         }
 
         return 0;
